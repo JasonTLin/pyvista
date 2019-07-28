@@ -69,12 +69,12 @@ node:
 
  .. code-block:: none
 
-    PolyData (0x7f809f263588)
+    PolyData (0x7f598dcda588)
       N Cells:      10
       N Points:     10
-      X Bounds:     9.839e-02, 8.262e-01
-      Y Bounds:     3.549e-01, 9.733e-01
-      Z Bounds:     2.689e-01, 9.588e-01
+      X Bounds:     1.091e-01, 9.668e-01
+      Y Bounds:     2.210e-02, 9.678e-01
+      Z Bounds:     1.221e-01, 8.308e-01
       N Arrays:     1
 
 
@@ -194,7 +194,7 @@ This example will label pooints with their scalar values
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.810 seconds)
+   **Total running time of the script:** ( 0 minutes  3.783 seconds)
 
 
 .. _sphx_glr_download_examples_02-plot_labels.py:
