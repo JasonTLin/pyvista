@@ -358,16 +358,19 @@ object.  It inherits all methods from the original vtk object,
 <tr class="row-even"><td><p><a class="reference internal" href="#pyvista.PolyData.n_faces" title="pyvista.PolyData.n_faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_faces</span></code></a></p></td>
 <td><p>alias for <code class="docutils literal notranslate"><span class="pre">n_cells</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.PolyData.number_of_faces" title="pyvista.PolyData.number_of_faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_faces</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.PolyData.n_open_edges" title="pyvista.PolyData.n_open_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_open_edges</span></code></a></p></td>
+<td><p>The number of open edges on this mesh</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.PolyData.number_of_faces" title="pyvista.PolyData.number_of_faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_faces</span></code></a></p></td>
 <td><p>returns the number of cells</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.PolyData.obbTree" title="pyvista.PolyData.obbTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">obbTree</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.PolyData.obbTree" title="pyvista.PolyData.obbTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">obbTree</span></code></a></p></td>
 <td><p>obbTree is an object to generate oriented bounding box (OBB) trees.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.PolyData.point_normals" title="pyvista.PolyData.point_normals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">point_normals</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.PolyData.point_normals" title="pyvista.PolyData.point_normals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">point_normals</span></code></a></p></td>
 <td><p>Point normals</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.PolyData.volume" title="pyvista.PolyData.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.PolyData.volume" title="pyvista.PolyData.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></p></td>
 <td><p>Mesh volume - will throw a VTK error/warning if not a closed surface</p></td>
 </tr>
 </tbody>
@@ -467,6 +470,12 @@ object.  It inherits all methods from the original vtk object,
 <dt id="pyvista.PolyData.n_faces">
 <em class="property">property </em><code class="sig-name descname">n_faces</code><a class="headerlink" href="#pyvista.PolyData.n_faces" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias for <code class="docutils literal notranslate"><span class="pre">n_cells</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyvista.PolyData.n_open_edges">
+<em class="property">property </em><code class="sig-name descname">n_open_edges</code><a class="headerlink" href="#pyvista.PolyData.n_open_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of open edges on this mesh</p>
 </dd></dl>
 
 <dl class="method">
