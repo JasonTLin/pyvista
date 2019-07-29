@@ -619,7 +619,8 @@ the input dataset and overasdf write an array named <cite>Elevation</cite> if pr
 <dt id="pyvista.DataSetFilters.extract_edges">
 <code class="sig-name descname">extract_edges</code><span class="sig-paren">(</span><em class="sig-param">feature_angle=30</em>, <em class="sig-param">boundary_edges=True</em>, <em class="sig-param">non_manifold_edges=True</em>, <em class="sig-param">feature_edges=True</em>, <em class="sig-param">manifold_edges=True</em>, <em class="sig-param">inplace=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.DataSetFilters.extract_edges" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts edges from the surface of the mesh. If the given mesh is not
-PolyData, the external surface of the given mesh is extracted and used. From vtk documentation, the edges are one of the following</p>
+PolyData, the external surface of the given mesh is extracted and used.
+From vtk documentation, the edges are one of the following</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>boundary (used by one polygon) or a line cell</p></li>
@@ -1326,7 +1327,7 @@ from any PolyData mesh.</p>
 <dl class="class">
 <dt id="pyvista.PolyDataFilters">
 <em class="property">class </em><code class="sig-prename descclassname">pyvista.</code><code class="sig-name descname">PolyDataFilters</code><a class="headerlink" href="#pyvista.PolyDataFilters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.core.filters.DataSetFilters</span></code></p>
 <dl class="method">
 <dt id="pyvista.PolyDataFilters.boolean_add">
 <code class="sig-name descname">boolean_add</code><span class="sig-paren">(</span><em class="sig-param">mesh</em>, <em class="sig-param">inplace=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.PolyDataFilters.boolean_add" title="Permalink to this definition">¶</a></dt>
@@ -1967,7 +1968,7 @@ available as callable methods directly from any UnstructuredGrid mesh.</p>
 <dl class="class">
 <dt id="pyvista.UnstructuredGridFilters">
 <em class="property">class </em><code class="sig-prename descclassname">pyvista.</code><code class="sig-name descname">UnstructuredGridFilters</code><a class="headerlink" href="#pyvista.UnstructuredGridFilters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.core.filters.DataSetFilters</span></code></p>
 <dl class="method">
 <dt id="pyvista.UnstructuredGridFilters.delaunay_2d">
 <code class="sig-name descname">delaunay_2d</code><span class="sig-paren">(</span><em class="sig-param">tol=1e-05</em>, <em class="sig-param">alpha=0.0</em>, <em class="sig-param">offset=1.0</em>, <em class="sig-param">bound=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.UnstructuredGridFilters.delaunay_2d" title="Permalink to this definition">¶</a></dt>
