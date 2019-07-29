@@ -84,6 +84,14 @@ Now pass the NumPy meshgrid to PyVista
     :class: sphx-glr-single-img
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    WARNING:root:DEPRECATED: ``.tri_filter`` is deprecated. Use ``.triangulate`` instead.
+
 
 
 Generating a structured grid is a one liner in this module, and the points
@@ -167,11 +175,11 @@ frame.
 
  .. code-block:: none
 
-    [[ -38.41659592 -279.8418288     1.851148  ]
-     [ -29.42163343 -273.16158011    2.29567316]
-     [ -13.6683754  -261.4621782     3.24691537]
-     [  -7.80195984 -257.10539351    3.65818634]
-     [   5.04541559 -247.56409048    4.66225124]]
+    [[ -40.03476521 -274.72804611    2.11966085]
+     [ -31.16593349 -268.1414704     2.61590994]
+     [ -17.11019622 -257.70275867    3.56084065]
+     [ -12.41346215 -254.21465611    3.92046753]
+     [   5.37307884 -241.00520502    5.47149148]]
 
 
 
@@ -250,7 +258,7 @@ dimensionality of structured grid including:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.037 seconds)
+   **Total running time of the script:** ( 0 minutes  5.064 seconds)
 
 
 .. _sphx_glr_download_examples_00-load_create-structured-surface.py:

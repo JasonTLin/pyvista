@@ -324,19 +324,22 @@ This base class is analogous to VTK’s <code class="docutils literal notranslat
 <tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.Common.points" title="pyvista.Common.points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">points</span></code></a></p></td>
 <td><p>returns a pointer to the points as a numpy object</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.Common.scalar_names" title="pyvista.Common.scalar_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scalar_names</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.Common.quality" title="pyvista.Common.quality"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quality</span></code></a></p></td>
+<td><p>Returns cell quality using PyANSYS.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.Common.scalar_names" title="pyvista.Common.scalar_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scalar_names</span></code></a></p></td>
 <td><p>A list of scalar names for the dataset.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.Common.t_coords" title="pyvista.Common.t_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t_coords</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.Common.t_coords" title="pyvista.Common.t_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t_coords</span></code></a></p></td>
 <td><p>The active texture coordinates on the points</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.Common.textures" title="pyvista.Common.textures"><code class="xref py py-obj docutils literal notranslate"><span class="pre">textures</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.Common.textures" title="pyvista.Common.textures"><code class="xref py py-obj docutils literal notranslate"><span class="pre">textures</span></code></a></p></td>
 <td><p>A dictionary to hold <code class="docutils literal notranslate"><span class="pre">vtk.vtkTexture</span></code> objects that can be associated with this dataset.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.Common.vectors" title="pyvista.Common.vectors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectors</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.Common.vectors" title="pyvista.Common.vectors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectors</span></code></a></p></td>
 <td><p>Returns active vectors</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pyvista.Common.volume" title="pyvista.Common.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.Common.volume" title="pyvista.Common.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></p></td>
 <td><p>Mesh volume</p></td>
 </tr>
 </tbody>
@@ -730,6 +733,28 @@ Returned only when screenshot enabled</p></li>
 <dt id="pyvista.Common.points_to_double">
 <code class="sig-name descname">points_to_double</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.Common.points_to_double" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes points double precision</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyvista.Common.quality">
+<em class="property">property </em><code class="sig-name descname">quality</code><a class="headerlink" href="#pyvista.Common.quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns cell quality using PyANSYS. Computes the minimum scaled
+jacobian of each cell.  Cells that have values below 0 are invalid for
+a finite element analysis.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This casts the input to an unstructured grid</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>cellquality</strong> – Minimum scaled jacobian of each cell.  Ranges from -1 to 1.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Requires pyansys to be installed.</p>
 </dd></dl>
 
 <dl class="method">
