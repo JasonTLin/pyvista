@@ -323,9 +323,11 @@ Original volume: 729.0
 </pre></div>
 </div>
 <p>Or better yet, you could simply extract the largest volume from your
-thresholded dataset:</p>
+thresholded dataset by passing <code class="docutils literal notranslate"><span class="pre">largest=True</span></code> to the <code class="docutils literal notranslate"><span class="pre">connectivity</span></code>
+filter or by using <code class="docutils literal notranslate"><span class="pre">extract_largest</span></code> filter (both are equivalent).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab the largest connected volume present</span>
-<span class="n">largest</span> <span class="o">=</span> <span class="n">threshed</span><span class="o">.</span><span class="n">connectivity</span><span class="p">(</span><span class="n">largest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">largest</span> <span class="o">=</span> <span class="n">threshed</span><span class="o">.</span><span class="n">connectivity</span><span class="p">(</span><span class="n">largest</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># or: largest = threshed.extract_largest()</span>
 
 <span class="c1"># Get volume as numeric value</span>
 <span class="n">large_volume</span> <span class="o">=</span> <span class="n">largest</span><span class="o">.</span><span class="n">volume</span>
@@ -423,7 +425,7 @@ Body 20 volume: 2270.000
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_compute-volume_004.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_compute-volume_004.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  21.455 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  21.345 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-01-filter-compute-volume-py">
 <div class="sphx-glr-download docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9d6b84a80d62f44fecf5d3de91309882/compute-volume.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">compute-volume.py</span></code></a></p>
