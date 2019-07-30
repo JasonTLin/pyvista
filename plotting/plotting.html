@@ -363,7 +363,7 @@ Must contain the same number of items as cent.</p></li>
 
 <dl class="function">
 <dt id="pyvista.create_axes_orientation_box">
-<code class="sig-prename descclassname">pyvista.</code><code class="sig-name descname">create_axes_orientation_box</code><span class="sig-paren">(</span><em class="sig-param">line_width=1</em>, <em class="sig-param">text_scale=0.366667</em>, <em class="sig-param">edge_color='black'</em>, <em class="sig-param">x_color='lightblue'</em>, <em class="sig-param">y_color='seagreen'</em>, <em class="sig-param">z_color='tomato'</em>, <em class="sig-param">x_face_color=(255</em>, <em class="sig-param">0</em>, <em class="sig-param">0)</em>, <em class="sig-param">y_face_color=(0</em>, <em class="sig-param">255</em>, <em class="sig-param">0)</em>, <em class="sig-param">z_face_color=(0</em>, <em class="sig-param">0</em>, <em class="sig-param">255)</em>, <em class="sig-param">color_box=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.create_axes_orientation_box" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyvista.</code><code class="sig-name descname">create_axes_orientation_box</code><span class="sig-paren">(</span><em class="sig-param">line_width=1</em>, <em class="sig-param">text_scale=0.366667</em>, <em class="sig-param">edge_color='black'</em>, <em class="sig-param">x_color=None</em>, <em class="sig-param">y_color=None</em>, <em class="sig-param">z_color=None</em>, <em class="sig-param">x_label='X'</em>, <em class="sig-param">y_label='Y'</em>, <em class="sig-param">z_label='Z'</em>, <em class="sig-param">x_face_color=(255</em>, <em class="sig-param">0</em>, <em class="sig-param">0)</em>, <em class="sig-param">y_face_color=(0</em>, <em class="sig-param">255</em>, <em class="sig-param">0)</em>, <em class="sig-param">z_face_color=(0</em>, <em class="sig-param">0</em>, <em class="sig-param">255)</em>, <em class="sig-param">color_box=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.create_axes_orientation_box" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a Box axes orientation widget with labels.</p>
 </dd></dl>
 
@@ -430,7 +430,7 @@ Must contain the same number of items as cent.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_arrows" title="pyvista.BasePlotter.add_arrows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_arrows</span></code></a>(cent, direction[, mag])</p></td>
 <td><p>Adds arrows to plotting object</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_axes" title="pyvista.BasePlotter.add_axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_axes</span></code></a>([interactive, color, box, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_axes" title="pyvista.BasePlotter.add_axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_axes</span></code></a>([interactive, color, x_color, …])</p></td>
 <td><p>Add an interactive axes widget</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_axes_at_origin" title="pyvista.BasePlotter.add_axes_at_origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_axes_at_origin</span></code></a>([loc])</p></td>
@@ -706,7 +706,7 @@ meshes to be partially displayed.  Default False.</p></li>
 
 <dl class="method">
 <dt id="pyvista.BasePlotter.add_axes">
-<code class="sig-name descname">add_axes</code><span class="sig-paren">(</span><em class="sig-param">interactive=None</em>, <em class="sig-param">color=None</em>, <em class="sig-param">box=False</em>, <em class="sig-param">box_arguments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.BasePlotter.add_axes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_axes</code><span class="sig-paren">(</span><em class="sig-param">interactive=None</em>, <em class="sig-param">color=None</em>, <em class="sig-param">x_color=None</em>, <em class="sig-param">y_color=None</em>, <em class="sig-param">z_color=None</em>, <em class="sig-param">x_label='X'</em>, <em class="sig-param">y_label='Y'</em>, <em class="sig-param">z_label='Z'</em>, <em class="sig-param">box=False</em>, <em class="sig-param">box_arguments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.BasePlotter.add_axes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an interactive axes widget</p>
 </dd></dl>
 
