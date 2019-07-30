@@ -175,11 +175,11 @@ frame.
 
  .. code-block:: none
 
-    [[ -36.8702649  -281.22516143    1.7910818 ]
-     [ -30.48243129 -276.48113753    2.08886381]
-     [ -17.22459943 -266.63500265    2.81686514]
-     [  -7.40185512 -259.33998893    3.45412552]
-     [   8.72532538 -247.36288769    4.6736657 ]]
+    [[ -37.22478851 -278.72810876    1.91825901]
+     [ -26.78968937 -270.97832021    2.45425515]
+     [ -15.99118148 -262.9586405     3.11124187]
+     [  -4.52511914 -254.4431911     3.92387418]
+     [   8.39851322 -244.84525468    4.97379683]]
 
 
 
@@ -258,7 +258,7 @@ dimensionality of structured grid including:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.183 seconds)
+   **Total running time of the script:** ( 0 minutes  5.108 seconds)
 
 
 .. _sphx_glr_download_examples_00-load_create-structured-surface.py:
