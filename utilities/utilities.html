@@ -260,7 +260,12 @@ through recursion so that this is N-dimensional.</p>
 <dt id="pyvista.wrap">
 <code class="sig-prename descclassname">pyvista.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param">vtkdataset</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.wrap" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is a convenience method to safely wrap any given VTK data object
-to its appropriate PyVista data object.</p>
+to its appropriate PyVista data object. Other formats that are supported
+include:</p>
+<ul class="simple">
+<li><p>2D <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> of XYZ vertices</p></li>
+<li><p>3D <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> representing a volume. Values will be scalars.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="function">

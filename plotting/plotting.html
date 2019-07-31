@@ -448,8 +448,8 @@ Must contain the same number of items as cent.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_lines" title="pyvista.BasePlotter.add_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_lines</span></code></a>(lines[, color, width, label, name])</p></td>
 <td><p>Adds lines to the plotting object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_mesh" title="pyvista.BasePlotter.add_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_mesh</span></code></a>(mesh[, color, style, scalars, rng, …])</p></td>
-<td><p>Adds a unstructured, structured, or surface mesh to the plotting object.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_mesh" title="pyvista.BasePlotter.add_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_mesh</span></code></a>(mesh[, color, style, scalars, …])</p></td>
+<td><p>Adds any PyVista/VTK mesh or dataset that PyVista can wrap to the scene.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_point_labels" title="pyvista.BasePlotter.add_point_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_labels</span></code></a>(points, labels[, italic, …])</p></td>
 <td><p>Creates a point actor with one label from list labels assigned to each point.</p></td>
@@ -466,7 +466,7 @@ Must contain the same number of items as cent.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_text" title="pyvista.BasePlotter.add_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_text</span></code></a>(text[, position, font_size, color, …])</p></td>
 <td><p>Adds text to plot object in the top left corner by default</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_volume" title="pyvista.BasePlotter.add_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_volume</span></code></a>(volume[, scalars, resolution, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyvista.BasePlotter.add_volume" title="pyvista.BasePlotter.add_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_volume</span></code></a>(volume[, scalars, clim, …])</p></td>
 <td><p>Adds a volume, rendered using a fixed point ray cast mapper by default.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pyvista.BasePlotter.clear" title="pyvista.BasePlotter.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</p></td>
@@ -864,64 +864,75 @@ will be replaced by the new actor.</p></li>
 
 <dl class="method">
 <dt id="pyvista.BasePlotter.add_mesh">
-<code class="sig-name descname">add_mesh</code><span class="sig-paren">(</span><em class="sig-param">mesh</em>, <em class="sig-param">color=None</em>, <em class="sig-param">style=None</em>, <em class="sig-param">scalars=None</em>, <em class="sig-param">rng=None</em>, <em class="sig-param">stitle=None</em>, <em class="sig-param">show_edges=None</em>, <em class="sig-param">point_size=5.0</em>, <em class="sig-param">opacity=1.0</em>, <em class="sig-param">line_width=None</em>, <em class="sig-param">flip_scalars=False</em>, <em class="sig-param">lighting=None</em>, <em class="sig-param">n_colors=256</em>, <em class="sig-param">interpolate_before_map=False</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">reset_camera=None</em>, <em class="sig-param">scalar_bar_args=None</em>, <em class="sig-param">multi_colors=False</em>, <em class="sig-param">name=None</em>, <em class="sig-param">texture=None</em>, <em class="sig-param">render_points_as_spheres=None</em>, <em class="sig-param">smooth_shading=False</em>, <em class="sig-param">render_lines_as_tubes=False</em>, <em class="sig-param">edge_color=None</em>, <em class="sig-param">ambient=0.0</em>, <em class="sig-param">show_scalar_bar=None</em>, <em class="sig-param">nan_color=None</em>, <em class="sig-param">nan_opacity=1.0</em>, <em class="sig-param">loc=None</em>, <em class="sig-param">backface_culling=False</em>, <em class="sig-param">rgb=False</em>, <em class="sig-param">categories=False</em>, <em class="sig-param">use_transparency=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.BasePlotter.add_mesh" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a unstructured, structured, or surface mesh to the
-plotting object.</p>
-<p>Also accepts a 3D numpy.ndarray</p>
+<code class="sig-name descname">add_mesh</code><span class="sig-paren">(</span><em class="sig-param">mesh</em>, <em class="sig-param">color=None</em>, <em class="sig-param">style=None</em>, <em class="sig-param">scalars=None</em>, <em class="sig-param">clim=None</em>, <em class="sig-param">show_edges=None</em>, <em class="sig-param">edge_color=None</em>, <em class="sig-param">point_size=5.0</em>, <em class="sig-param">line_width=None</em>, <em class="sig-param">opacity=1.0</em>, <em class="sig-param">flip_scalars=False</em>, <em class="sig-param">lighting=None</em>, <em class="sig-param">n_colors=256</em>, <em class="sig-param">interpolate_before_map=False</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">reset_camera=None</em>, <em class="sig-param">scalar_bar_args=None</em>, <em class="sig-param">show_scalar_bar=None</em>, <em class="sig-param">stitle=None</em>, <em class="sig-param">multi_colors=False</em>, <em class="sig-param">name=None</em>, <em class="sig-param">texture=None</em>, <em class="sig-param">render_points_as_spheres=None</em>, <em class="sig-param">render_lines_as_tubes=False</em>, <em class="sig-param">smooth_shading=False</em>, <em class="sig-param">ambient=0.0</em>, <em class="sig-param">nan_color=None</em>, <em class="sig-param">nan_opacity=1.0</em>, <em class="sig-param">loc=None</em>, <em class="sig-param">backface_culling=False</em>, <em class="sig-param">rgb=False</em>, <em class="sig-param">categories=False</em>, <em class="sig-param">use_transparency=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.BasePlotter.add_mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds any PyVista/VTK mesh or dataset that PyVista can wrap to the
+scene. This method using a mesh representation to view the surfaces
+and/or geometry of datasets. For volume rendering, see
+<a class="reference internal" href="#pyvista.BasePlotter.add_volume" title="pyvista.BasePlotter.add_volume"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyvista.BasePlotter.add_volume()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mesh</strong> (<em>vtk unstructured</em><em>, </em><em>structured</em><em>, </em><em>polymesh</em><em>, or </em><em>3D numpy.ndarray</em>) – A vtk unstructured, structured, or polymesh to plot.</p></li>
-<li><p><strong>color</strong> (<em>string</em><em> or </em><em>3 item list</em><em>, </em><em>optional</em><em>, </em><em>defaults to white</em>) – <dl class="simple">
-<dt>Either a string, rgb list, or hex color string.  For example:</dt><dd><p>color=’white’
-color=’w’
-color=[1, 1, 1]
-color=’#FFFFFF’</p>
-</dd>
-</dl>
-<p>Color will be overridden when scalars are input.</p>
-</p></li>
-<li><p><strong>style</strong> (<em>string</em><em>, </em><em>optional</em>) – <dl class="simple">
-<dt>Visualization style of the vtk mesh.  One for the following:</dt><dd><p>style=’surface’
-style=’wireframe’
-style=’points’</p>
-</dd>
-</dl>
-<p>Defaults to ‘surface’</p>
-</p></li>
-<li><p><strong>scalars</strong> (<em>numpy array</em><em>, </em><em>optional</em>) – Scalars used to “color” the mesh.  Accepts an array equal
+<li><p><strong>mesh</strong> (<a class="reference internal" href="../core/common.html#pyvista.Common" title="pyvista.Common"><em>pyvista.Common</em></a><em> or </em><a class="reference internal" href="../core/composite.html#pyvista.MultiBlock" title="pyvista.MultiBlock"><em>pyvista.MultiBlock</em></a>) – Any PyVista or VTK mesh is supported. Also, any dataset
+that <a class="reference internal" href="../utilities/utilities.html#pyvista.wrap" title="pyvista.wrap"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyvista.wrap()</span></code></a> can handle including NumPy arrays of XYZ
+points.</p></li>
+<li><p><strong>color</strong> (<em>string</em><em> or </em><em>3 item list</em><em>, </em><em>optional</em><em>, </em><em>defaults to white</em>) – Use to make the entire mesh have a single solid color.
+Either a string, RGB list, or hex color string.  For example:
+<code class="docutils literal notranslate"><span class="pre">color='white'</span></code>, <code class="docutils literal notranslate"><span class="pre">color='w'</span></code>, <code class="docutils literal notranslate"><span class="pre">color=[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">color='#FFFFFF'</span></code>. Color will be overridden if scalars are
+specified.</p></li>
+<li><p><strong>style</strong> (<em>string</em><em>, </em><em>optional</em>) – Visualization style of the mesh.  One of the following:
+<code class="docutils literal notranslate"><span class="pre">style='surface'</span></code>, <code class="docutils literal notranslate"><span class="pre">style='wireframe'</span></code>, <code class="docutils literal notranslate"><span class="pre">style='points'</span></code>.
+Defaults to <code class="docutils literal notranslate"><span class="pre">'surface'</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">'wireframe'</span></code> only shows a
+wireframe of the outer geometry.</p></li>
+<li><p><strong>scalars</strong> (<em>str</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – Scalars used to “color” the mesh.  Accepts a string name of an
+array that is present on the mesh or an array equal
 to the number of cells or the number of points in the
 mesh.  Array should be sized as a single vector. If both
-color and scalars are None, then the active scalars are
-used</p></li>
-<li><p><strong>rng</strong> (<em>2 item list</em><em>, </em><em>optional</em>) – Range of mapper for scalars.  Defaults to minimum and
-maximum of scalars array.  Example: <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">2]</span></code>. <code class="docutils literal notranslate"><span class="pre">clim</span></code>
+<code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">scalars</span></code> are <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the active scalars are
+used.</p></li>
+<li><p><strong>clim</strong> (<em>2 item list</em><em>, </em><em>optional</em>) – Color bar range for scalars.  Defaults to minimum and
+maximum of scalars array.  Example: <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">2]</span></code>. <code class="docutils literal notranslate"><span class="pre">rng</span></code>
 is also an accepted alias for this.</p></li>
-<li><p><strong>stitle</strong> (<em>string</em><em>, </em><em>optional</em>) – Scalar title.  By default there is no scalar legend bar.
-Setting this creates the legend bar and adds a title to
-it.  To create a bar with no title, use an empty string
-(i.e. ‘’).</p></li>
 <li><p><strong>show_edges</strong> (<em>bool</em><em>, </em><em>optional</em>) – Shows the edges of a mesh.  Does not apply to a wireframe
 representation.</p></li>
-<li><p><strong>point_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Point size.  Applicable when style=’points’.  Default 5.0</p></li>
-<li><p><strong>opacity</strong> (<em>float</em><em>, </em><em>str</em><em>, </em><em>array-like</em>) – Opacity of mesh.  Should be between 0 and 1.  Default 1.0.
-A string option can also be specified to map the scalar range
-to a predefined opacity transfer function (options are: linear,
-linear_r, geom, geom_r). A string could also be used to map a
-scalar array to the the opacity (must have same number of elements
-as the <code class="docutils literal notranslate"><span class="pre">scalars</span></code> argument). Or you can pass custum made trasfer
-functions that are either <code class="docutils literal notranslate"><span class="pre">n_colors</span></code> in length or shorter.</p></li>
+<li><p><strong>edge_color</strong> (<em>string</em><em> or </em><em>3 item list</em><em>, </em><em>optional</em><em>, </em><em>defaults to black</em>) – The solid color to give the edges when <code class="docutils literal notranslate"><span class="pre">show_edges=True</span></code>.
+Either a string, RGB list, or hex color string.</p></li>
+<li><p><strong>point_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Point size of any nodes in the dataset plotted. Also applicable
+when style=’points’. Default <code class="docutils literal notranslate"><span class="pre">5.0</span></code></p></li>
 <li><p><strong>line_width</strong> (<em>float</em><em>, </em><em>optional</em>) – Thickness of lines.  Only valid for wireframe and surface
 representations.  Default None.</p></li>
-<li><p><strong>flip_scalars</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flip direction of cmap.</p></li>
-<li><p><strong>lighting</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable or disable view direction lighting.  Default False.</p></li>
-<li><p><strong>n_colors</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of colors to use when displaying scalars.  Default
-256.</p></li>
+<li><p><strong>opacity</strong> (<em>float</em><em>, </em><em>str</em><em>, </em><em>array-like</em>) – Opacity of the mesh. If a siblge float value is given, it will be
+the global opacity of the mesh and uniformly applied everywhere -
+should be between 0 and 1. A string can also be specified to map
+the scalar range to a predefined opacity transfer function
+(options include: ‘linear’, ‘linear_r’, ‘geom’, ‘geom_r’).
+A string could also be used to map a scalar array from the mesh to
+the the opacity (must have same number of elements as the
+<code class="docutils literal notranslate"><span class="pre">scalars</span></code> argument). Or you can pass a custum made trasfer
+function that is an aray either <code class="docutils literal notranslate"><span class="pre">n_colors</span></code> in length or shorter.</p></li>
+<li><p><strong>flip_scalars</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flip direction of cmap. Most colormaps allow <code class="docutils literal notranslate"><span class="pre">*_r</span></code> suffix to do
+this as well.</p></li>
+<li><p><strong>lighting</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable or disable view direction lighting. Default False.</p></li>
+<li><p><strong>n_colors</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of colors to use when displaying scalars. Defaults to 256.
+The scalar bar will also have this many colors.</p></li>
 <li><p><strong>interpolate_before_map</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enabling makes for a smoother scalar display.  Default
 False</p></li>
-<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – cmap string.  See available matplotlib cmaps.  Only
-applicable for when displaying scalars.  Defaults None
-(rainbow).  Requires matplotlib.</p></li>
+<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the Matplotlib colormap to us when mapping the <code class="docutils literal notranslate"><span class="pre">scalars</span></code>.
+See available Matplotlib colormaps.  Only applicable for when
+displaying <code class="docutils literal notranslate"><span class="pre">scalars</span></code>. Requires Matplotlib to be installed.
+<code class="docutils literal notranslate"><span class="pre">colormap</span></code> is also an accepted alias for this. If <code class="docutils literal notranslate"><span class="pre">colorcet</span></code> or
+<code class="docutils literal notranslate"><span class="pre">cmocean</span></code> are installed, their colormaps can be specified by name.</p></li>
+<li><p><strong>label</strong> (<em>str</em><em>, </em><em>optional</em>) – String label to use when adding a legend to the scene with
+<a class="reference internal" href="#pyvista.BasePlotter.add_legend" title="pyvista.BasePlotter.add_legend"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyvista.BasePlotter.add_legend()</span></code></a></p></li>
+<li><p><strong>reset_camera</strong> (<em>bool</em><em>, </em><em>optional</em>) – Reset the camera after adding this mesh to the scene</p></li>
+<li><p><strong>scalar_bar_args</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary of keyword arguments to pass when adding the scalar bar
+to the scene. For options, see
+<a class="reference internal" href="#pyvista.BasePlotter.add_scalar_bar" title="pyvista.BasePlotter.add_scalar_bar"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyvista.BasePlotter.add_scalar_bar()</span></code></a>.</p></li>
+<li><p><strong>show_scalar_bar</strong> (<em>bool</em>) – If False, a scalar bar will not be added to the scene. Defaults
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>stitle</strong> (<em>string</em><em>, </em><em>optional</em>) – Scalar bar title. By default the scalar bar is given a title of the
+the scalar array used to color the mesh.
+To create a bar with no title, use an empty string (i.e. ‘’).</p></li>
 <li><p><strong>multi_colors</strong> (<em>bool</em><em>, </em><em>optional</em>) – If a <code class="docutils literal notranslate"><span class="pre">MultiBlock</span></code> dataset is given this will color each
 block by a solid color using matplotlib’s color cycler.</p></li>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – The name for the added mesh/actor so that it can be easily
@@ -933,22 +944,29 @@ datasets. If set to <code class="docutils literal notranslate"><span class="pre"
 on the object will be used. If a string name is given, it
 will pull a texture with that name associated to the input
 mesh.</p></li>
+<li><p><strong>render_points_as_spheres</strong> (<em>bool</em><em>, </em><em>optional</em>) – </p></li>
+<li><p><strong>render_lines_as_tubes</strong> (<em>bool</em><em>, </em><em>optional</em>) – </p></li>
+<li><p><strong>smooth_shading</strong> (<em>bool</em><em>, </em><em>optional</em>) – </p></li>
 <li><p><strong>ambient</strong> (<em>float</em><em>, </em><em>optional</em>) – When lighting is enabled, this is the amount of light from
 0 to 1 that reaches the actor when not directed at the
-light source emitted from the viewer.  Default 0.2.</p></li>
-<li><p><strong>nan_color</strong> (<em>string</em><em> or </em><em>3 item list</em><em>, </em><em>optional</em><em>, </em><em>defaults to gray</em>) – The color to use for all NaN values in the plotted scalar
+light source emitted from the viewer.  Default 0.0.</p></li>
+<li><p><strong>nan_color</strong> (<em>string</em><em> or </em><em>3 item list</em><em>, </em><em>optional</em><em>, </em><em>defaults to gray</em>) – The color to use for all <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values in the plotted scalar
 array.</p></li>
-<li><p><strong>nan_opacity</strong> (<em>float</em><em>, </em><em>optional</em>) – Opacity of NaN values.  Should be between 0 and 1.
+<li><p><strong>nan_opacity</strong> (<em>float</em><em>, </em><em>optional</em>) – Opacity of <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values.  Should be between 0 and 1.
 Default 1.0</p></li>
+<li><p><strong>loc</strong> (<em>int</em><em>, </em><em>tuple</em><em>, or </em><em>list</em>) – Index of the renderer to add the actor to.  For example,
+<code class="docutils literal notranslate"><span class="pre">loc=2</span></code> or <code class="docutils literal notranslate"><span class="pre">loc=(1,</span> <span class="pre">1)</span></code>.  If None, selects the last
+active Renderer.</p></li>
 <li><p><strong>backface_culling</strong> (<em>bool optional</em>) – Does not render faces that should not be visible to the
 plotter.  This can be helpful for dense surface meshes,
 especially when edges are visible, but can cause flat
-meshes to be partially displayed.  Default False.</p></li>
+meshes to be partially displayed.  Defaults <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p><strong>rgb</strong> (<em>bool</em><em>, </em><em>optional</em>) – If an 2 dimensional array is passed as the scalars, plot those
-values as RGB+A colors! <code class="docutils literal notranslate"><span class="pre">rgba</span></code> is also accepted alias for this.</p></li>
+values as RGB(A) colors! <code class="docutils literal notranslate"><span class="pre">rgba</span></code> is also accepted alias for this.
+Opacity (the A) is optional.</p></li>
 <li><p><strong>categories</strong> (<em>bool</em><em>, </em><em>optional</em>) – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the number of unique values in the scalar
 array will be used as the <code class="docutils literal notranslate"><span class="pre">n_colors</span></code> argument.</p></li>
-<li><p><strong>use_transparency</strong> (<em>bool</em><em>, </em><em>optional</em>) – Invert the opacity mapping and make the values correspond to
+<li><p><strong>use_transparency</strong> (<em>bool</em><em>, </em><em>optional</em>) – Invert the opacity mappings and make the values correspond to
 transperency.</p></li>
 </ul>
 </dd>
@@ -1128,28 +1146,47 @@ will be replaced by the new actor.</p></li>
 
 <dl class="method">
 <dt id="pyvista.BasePlotter.add_volume">
-<code class="sig-name descname">add_volume</code><span class="sig-paren">(</span><em class="sig-param">volume</em>, <em class="sig-param">scalars=None</em>, <em class="sig-param">resolution=None</em>, <em class="sig-param">opacity='linear'</em>, <em class="sig-param">n_colors=256</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=False</em>, <em class="sig-param">reset_camera=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">ambient=0.0</em>, <em class="sig-param">categories=False</em>, <em class="sig-param">loc=None</em>, <em class="sig-param">backface_culling=False</em>, <em class="sig-param">multi_colors=False</em>, <em class="sig-param">blending='composite'</em>, <em class="sig-param">mapper='fixed_point'</em>, <em class="sig-param">rng=None</em>, <em class="sig-param">stitle=None</em>, <em class="sig-param">scalar_bar_args=None</em>, <em class="sig-param">show_scalar_bar=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.BasePlotter.add_volume" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_volume</code><span class="sig-paren">(</span><em class="sig-param">volume</em>, <em class="sig-param">scalars=None</em>, <em class="sig-param">clim=None</em>, <em class="sig-param">resolution=None</em>, <em class="sig-param">opacity='linear'</em>, <em class="sig-param">n_colors=256</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=False</em>, <em class="sig-param">reset_camera=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">ambient=0.0</em>, <em class="sig-param">categories=False</em>, <em class="sig-param">loc=None</em>, <em class="sig-param">backface_culling=False</em>, <em class="sig-param">multi_colors=False</em>, <em class="sig-param">blending='composite'</em>, <em class="sig-param">mapper='fixed_point'</em>, <em class="sig-param">stitle=None</em>, <em class="sig-param">scalar_bar_args=None</em>, <em class="sig-param">show_scalar_bar=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyvista.BasePlotter.add_volume" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a volume, rendered using a fixed point ray cast mapper by default.</p>
-<p>Requires a 3D numpy.ndarray or pyvista.UniformGrid.</p>
+<p>Requires a 3D <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> or <a class="reference internal" href="../core/grids.html#pyvista.UniformGrid" title="pyvista.UniformGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.UniformGrid</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>3D numpy.ndarray</em><em> or </em><em>pyvista.UnformGrid</em>) – The input array to visualize, assuming the array values denote
-scalar intensities.</p></li>
-<li><p><strong>opacity</strong> (<em>float</em><em> or </em><em>string</em><em>, </em><em>optional</em>) – Opacity of input array. Options are: linear, linear_r, geom, geom_r.
-Defaults to ‘linear’. Can also be given as a scalar value between 0
-and 1.</p></li>
+<li><p><strong>volume</strong> (<em>3D numpy.ndarray</em><em> or </em><em>pyvista.UnformGrid</em>) – The input volume to visualize. 3D numpy arrays are accepted.</p></li>
+<li><p><strong>scalars</strong> (<em>str</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – Scalars used to “color” the mesh.  Accepts a string name of an
+array that is present on the mesh or an array equal
+to the number of cells or the number of points in the
+mesh.  Array should be sized as a single vector. If both
+<code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">scalars</span></code> are <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the active scalars are
+used.</p></li>
+<li><p><strong>clim</strong> (<em>2 item list</em><em>, </em><em>optional</em>) – Color bar range for scalars.  Defaults to minimum and
+maximum of scalars array.  Example: <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">2]</span></code>. <code class="docutils literal notranslate"><span class="pre">rng</span></code>
+is also an accepted alias for this.</p></li>
+<li><p><strong>opacity</strong> (<em>string</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – Opacity mapping for the scalars array.
+A string can also be specified to map the scalar range to a
+predefined opacity transfer function (options include: ‘linear’,
+‘linear_r’, ‘geom’, ‘geom_r’). Or you can pass a custum made
+trasfer function that is an aray either <code class="docutils literal notranslate"><span class="pre">n_colors</span></code> in length or
+shorter.</p></li>
+<li><p><strong>n_colors</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of colors to use when displaying scalars. Defaults to 256.
+The scalar bar will also have this many colors.</p></li>
 <li><p><strong>flip_scalars</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flip direction of cmap.</p></li>
-<li><p><strong>n_colors</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of colors to use when displaying scalars.  Default
+<li><p><strong>n_colors</strong> – Number of colors to use when displaying scalars.  Default
 256.</p></li>
-<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – cmap string.  See available matplotlib cmaps. Only applicable for when
-displaying scalars.  Defaults to None (jet).  Requires matplotlib.
-Will be overridden if multi_colors is set to True.</p></li>
+<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the Matplotlib colormap to us when mapping the <code class="docutils literal notranslate"><span class="pre">scalars</span></code>.
+See available Matplotlib colormaps.  Only applicable for when
+displaying <code class="docutils literal notranslate"><span class="pre">scalars</span></code>. Requires Matplotlib to be installed.
+<code class="docutils literal notranslate"><span class="pre">colormap</span></code> is also an accepted alias for this. If <code class="docutils literal notranslate"><span class="pre">colorcet</span></code> or
+<code class="docutils literal notranslate"><span class="pre">cmocean</span></code> are installed, their colormaps can be specified by name.</p></li>
+<li><p><strong>flip_scalars</strong> – Flip direction of cmap. Most colormaps allow <code class="docutils literal notranslate"><span class="pre">*_r</span></code> suffix to do
+this as well.</p></li>
+<li><p><strong>reset_camera</strong> (<em>bool</em><em>, </em><em>optional</em>) – Reset the camera after adding this mesh to the scene</p></li>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – The name for the added actor so that it can be easily
 updated.  If an actor of this name already exists in the
 rendering window, it will be replaced by the new actor.</p></li>
-<li><p><strong>ambient</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount of light from 0 to 1 that reaches the actor when not
-directed at the light source emitted from the viewer.  Default 0.0.</p></li>
+<li><p><strong>ambient</strong> (<em>float</em><em>, </em><em>optional</em>) – When lighting is enabled, this is the amount of light from
+0 to 1 that reaches the actor when not directed at the
+light source emitted from the viewer.  Default 0.0.</p></li>
 <li><p><strong>loc</strong> (<em>int</em><em>, </em><em>tuple</em><em>, or </em><em>list</em>) – Index of the renderer to add the actor to.  For example,
 <code class="docutils literal notranslate"><span class="pre">loc=2</span></code> or <code class="docutils literal notranslate"><span class="pre">loc=(1,</span> <span class="pre">1)</span></code>.  If None, selects the last
 active Renderer.</p></li>
@@ -1157,15 +1194,24 @@ active Renderer.</p></li>
 plotter.  This can be helpful for dense surface meshes,
 especially when edges are visible, but can cause flat
 meshes to be partially displayed.  Default False.</p></li>
-<li><p><strong>categories</strong> (<em>bool</em><em>, </em><em>optional</em>) – If fetching a colormap from matplotlib, this is the number of
-categories to use in that colormap. If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, then
-the number of unique values in the scalar array will be used.</p></li>
+<li><p><strong>categories</strong> (<em>bool</em><em>, </em><em>optional</em>) – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the number of unique values in the scalar
+array will be used as the <code class="docutils literal notranslate"><span class="pre">n_colors</span></code> argument.</p></li>
 <li><p><strong>multi_colors</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not to use multiple colors when plotting MultiBlock
 object. Blocks will be colored sequentially as ‘Reds’, ‘Greens’,
 ‘Blues’, and ‘Grays’.</p></li>
 <li><p><strong>blending</strong> (<em>str</em><em>, </em><em>optional</em>) – Blending mode for visualisation of the input object(s). Can be
 one of ‘additive’, ‘maximum’, ‘minimum’, ‘composite’, or
 ‘average’. Defaults to ‘additive’.</p></li>
+<li><p><strong>mapper</strong> (<em>str</em><em>, </em><em>optional</em>) – Volume mapper to use given by name. Options include:
+<code class="docutils literal notranslate"><span class="pre">'fixed_point'</span></code>, <code class="docutils literal notranslate"><span class="pre">'gpu'</span></code>, <code class="docutils literal notranslate"><span class="pre">'open_gl'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'smart'</span></code>.</p></li>
+<li><p><strong>scalar_bar_args</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary of keyword arguments to pass when adding the scalar bar
+to the scene. For options, see
+<a class="reference internal" href="#pyvista.BasePlotter.add_scalar_bar" title="pyvista.BasePlotter.add_scalar_bar"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyvista.BasePlotter.add_scalar_bar()</span></code></a>.</p></li>
+<li><p><strong>show_scalar_bar</strong> (<em>bool</em>) – If False, a scalar bar will not be added to the scene. Defaults
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>stitle</strong> (<em>string</em><em>, </em><em>optional</em>) – Scalar bar title. By default the scalar bar is given a title of the
+the scalar array used to color the mesh.
+To create a bar with no title, use an empty string (i.e. ‘’).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
